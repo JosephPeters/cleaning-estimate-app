@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
+import CleaningEstimateForm from './components/CleaningEstimateForm';
 
 function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    fetch('/')
-      .then(response => response.text())
-      .then(data => setMessage(data));
-  }, []);
-
   return (
     <div className="App">
       <header className="App-header">
-        <p>{message}</p>
+        <h1>Cleaning Estimate Form</h1>
+        <CleaningEstimateForm />
       </header>
     </div>
   );
