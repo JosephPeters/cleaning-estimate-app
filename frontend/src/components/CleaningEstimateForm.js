@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import axios from 'axios';
 
 const CleaningEstimateForm = () => {
@@ -51,84 +52,99 @@ const CleaningEstimateForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Client Name:</label>
-        <input
-          type="text"
-          name="clientName"
-          value={formData.clientName}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label>Address:</label>
-        <input
-          type="text"
-          name="address"
-          value={formData.address}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label>Phone:</label>
-        <input
-          type="tel"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label>Services:</label>
-        {formData.services.map((service, index) => (
-          <div key={index}>
-            <input
-              type="text"
-              name="description"
-              placeholder="Description"
-              value={service.description}
-              onChange={(e) => handleServiceChange(index, e)}
-              required
-            />
-            <input
-              type="number"
-              name="cost"
-              placeholder="Cost"
-              value={service.cost}
-              onChange={(e) => handleServiceChange(index, e)}
-              required
-            />
-            <button type="button" onClick={() => handleRemoveService(index)}>Remove</button>
-          </div>
-        ))}
-        <button type="button" onClick={handleAddService}>Add Service</button>
-      </div>
-      <div>
-        <label>Estimate:</label>
-        <input
-          type="number"
-          name="estimate"
-          value={formData.estimate}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+    <Container maxWidth="sm">
+      <Box sx={{ mt: 4 }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Cleaning Estimate Form
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="clientName"
+            label="Client Name"
+            name="clientName"
+            value={formData.clientName}
+            onChange={handleChange}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="address"
+            label="Address"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="phone"
+            label="Phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          {formData.services.map((service, index) => (
+            <Box key={index} sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="Description"
+                name="description"
+                value={service.description}
+                onChange={(e) => handleServiceChange(index, e)}
+                sx={{ mr: 2 }}
+              />
+              <TextField
+                margin="normal"
+                required
+                label="Cost"
+                name="cost"
+                type="number"
+                value={service.cost}
+                onChange={(e) => handleServiceChange(index, e)}
+                sx={{ width: 100, mr: 2 }}
+              />
+              <Button variant="contained" color="secondary" onClick={() => handleRemoveService(index)}>
+                Remove
+              </Button>
+            </Box>
+          ))}
+          <Button variant="outlined" onClick={handleAddService} sx={{ mt: 2, mb: 2 }}>
+            Add Service
+          </Button>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="estimate"
+            label="Estimate"
+            name="estimate"
+            type="number"
+            value={formData.estimate}
+            onChange={handleChange}
+          />
+          <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            Submit
+          </Button>
+        </Box>
+      </Box>
+    </Container>
   );
 };
 
