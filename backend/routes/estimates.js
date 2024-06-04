@@ -4,6 +4,7 @@ const Estimate = require('../models/Estimate');
 
 // Create a new estimate
 router.post('/', async (req, res) => {
+  console.log('Request body:', req.body); // Log the request body for debugging
   try {
     const newEstimate = new Estimate(req.body);
     const savedEstimate = await newEstimate.save();
