@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const CleaningEstimateForm = () => {
   const [formData, setFormData] = useState({
@@ -40,7 +41,13 @@ const CleaningEstimateForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    axios.post('/api/estimates', formData)
+      .then(response => {
+        console.log('Form submitted:', response.data);
+      })
+      .catch(error => {
+        console.error('There was an error submitting the form:', error);
+      });
   };
 
   return (
