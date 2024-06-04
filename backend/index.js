@@ -17,12 +17,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/cleaning-
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error('MongoDB connection error:', err));
 
-
-// Use routes
-const estimatesRouter = require('./routes/estimates');
-app.use('/api/estimates', estimatesRouter);
-
-
 // Use routes
 const estimatesRouter = require('./routes/estimates');
 app.use('/api/estimates', estimatesRouter);
